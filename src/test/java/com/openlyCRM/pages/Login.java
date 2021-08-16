@@ -29,15 +29,15 @@ public class Login {
         String password ="invalidUserType";
         
         switch(loginType){
-            case "helpdesk":
+            case "Helpdesk":
                 username = ConfigurationReader.get("helpdesk_username");
                 password = ConfigurationReader.get("helpdesk_password");
                 break;
-            case "hr":
+            case "Human Resource":
                 username = ConfigurationReader.get("hr_username");
                 password = ConfigurationReader.get("hr_password");
                 break;
-            case "marketing":
+            case "Marketing":
                 username = ConfigurationReader.get("marketing_username");
                 password = ConfigurationReader.get("marketing_password");
                 break;
@@ -51,9 +51,7 @@ public class Login {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(""+ Keys.SHIFT+Keys.HOME+Keys.BACK_SPACE);
         passwordInput.sendKeys(password);
-        BrowserUtils.waitFor(2);
-        
-        
         loginSubmit.click();
+        BrowserUtils.waitFor(3);
     }
 }

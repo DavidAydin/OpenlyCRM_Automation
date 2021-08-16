@@ -11,7 +11,7 @@ Feature: Quick Navigation
 	#[https://qa.openlycrm.com|https://qa.openlycrm.com/]
 	@OP-413 @OP-422 @wip
 	Scenario: US OP-398 TC_001 QUICK NAVIGATION High Priority check box
-		Given the user is logged in as "Human Resource"
+		Given the user is logged in as "Helpdesk"
 		When the user clicks on "Task" tab on the quick navigation
 		And the user clicks on the "High Priority" check box
 		Then the "High Priority" check box should be selected	
