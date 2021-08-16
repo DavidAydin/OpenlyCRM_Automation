@@ -1,29 +1,39 @@
 package com.openlyCRM.step_definitions;
 
+import com.openlyCRM.pages.ActivityStreamPage;
+import com.openlyCRM.pages.ActivityStreamTaskPage;
+import com.openlyCRM.utilities.BrowserUtils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
-public class ActivityStreamStepDefs {
+public class ActivityStreamTaskStepDefs {
     
    
     
     @When("the user clicks on {string} tab on the quick navigation")
-    public void the_user_clicks_on_tab_on_the_quick_navigation(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void the_user_clicks_on_tab_on_the_quick_navigation(String QN_tabName) {
+        ActivityStreamPage activityStreamPage= new ActivityStreamPage();
+        activityStreamPage.goToQuickNavigationTab(QN_tabName);
+        
+        
     }
     
-    @When("the user clicks on the {string} check box")
-    public void the_user_clicks_on_the_check_box(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("the user clicks on the High Priority check box")
+    public void the_user_clicks_on_the_HP_check_box() {
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        activityStreamTaskPage.highPriorityCB.click();
+        BrowserUtils.waitFor(5);
+    
     }
     
-    @Then("the {string} check box should be selected")
-    public void the_check_box_should_be_selected(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("the High Priority check box should be selected")
+    public void the_HP_check_box_should_be_selected() {
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        boolean highPriorityCBSelected = activityStreamTaskPage.highPriorityCB.isSelected();
+        Assert.assertTrue("verify high priority is selected",highPriorityCBSelected);
+    
     }
     
     @When("the user clicks on the {string} icon")

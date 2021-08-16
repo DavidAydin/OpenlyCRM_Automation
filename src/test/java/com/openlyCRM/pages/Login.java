@@ -52,6 +52,6 @@ public class Login {
         passwordInput.sendKeys(""+ Keys.SHIFT+Keys.HOME+Keys.BACK_SPACE);
         passwordInput.sendKeys(password);
         loginSubmit.click();
-        BrowserUtils.waitFor(3);
+       
     }
 }

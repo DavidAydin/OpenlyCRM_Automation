@@ -13,8 +13,8 @@ Feature: Quick Navigation
 	Scenario: US OP-398 TC_001 QUICK NAVIGATION High Priority check box
 		Given the user is logged in as "Helpdesk"
 		When the user clicks on "Task" tab on the quick navigation
-		And the user clicks on the "High Priority" check box
-		Then the "High Priority" check box should be selected	
+		And the user clicks on the High Priority check box
+		Then the High Priority check box should be selected
 
 	#*User Story:* As a user, I should be able to assign tasks under Quick Navigate Menu
 	#
