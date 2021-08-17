@@ -8,8 +8,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.WeakHashMap;
 
 public class ActivityStreamTaskStepDefs {
     
@@ -27,7 +29,7 @@ public class ActivityStreamTaskStepDefs {
     public void the_user_clicks_on_the_HP_check_box() {
         ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
         activityStreamTaskPage.highPriorityCB.click();
-        BrowserUtils.waitFor(5);
+        
         
     }
     
@@ -41,7 +43,6 @@ public class ActivityStreamTaskStepDefs {
     
     @When("the user clicks on the Visual Editor icon")
     public void the_user_clicks_on_the_VE_icon() {
-        
         ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
         activityStreamTaskPage.visualEditorIcon.click();
         
@@ -51,7 +52,6 @@ public class ActivityStreamTaskStepDefs {
     public void the_editor_text_box_should_be_displayed() {
         ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
         boolean textEditorDisplayed = activityStreamTaskPage.textEditor.isDisplayed();
-//        BrowserUtils.waitFor(3);
         Assert.assertTrue("verify that the text editor is displayed",textEditorDisplayed);
         
     }
@@ -66,8 +66,7 @@ public class ActivityStreamTaskStepDefs {
     public void the_user_enters_as_description(String checkListDescription) {
         ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
         activityStreamTaskPage.checklistItemTextInput.sendKeys(checkListDescription);
-        
-        
+      
     }
     
     @When("the user clicks on the add button")
@@ -97,14 +96,21 @@ public class ActivityStreamTaskStepDefs {
     
     @When("the user adds separator by clicking on separator link")
     public void the_user_adds_separator_by_clicking_on_separator_link() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        new ActivityStreamTaskPage().separatorLink.click();
     }
     
     @Then("the separator line should appear after the last checklist item")
     public void the_separator_line_should_appear_after_the_last_checklist_item() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        List<WebElement> checklistSeparators = activityStreamTaskPage.ckhecklistSeparator;
+        int oldSeparators = checklistSeparators.size();
+        new ActivityStreamTaskPage().separatorLink.click();
+        List<WebElement> checklistSeparatorsNew = activityStreamTaskPage.ckhecklistSeparator;
+        int newSeparators = checklistSeparatorsNew.size();
+        String verification = "verify that the number of separators increased by 1";
+        Assert.assertEquals(verification,oldSeparators+1,newSeparators);
+        
+        
     }
     
     @When("the user hovers over the checlist item and clicks on the delete icon")

@@ -56,7 +56,7 @@ Feature: Quick Navigation
 	#*Environment:* 
 	#
 	#[https://qa.openlycrm.com|https://qa.openlycrm.com/]
-	@OP-417 @OP-422 @wip
+	@OP-417 @OP-422
 	Scenario: US OP-398 TC_004 QUICK NAVIGATION Adding Checklist Item Using The Checkmark
 		Given the user is logged in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
@@ -74,7 +74,7 @@ Feature: Quick Navigation
 	#*Environment:* 
 	#
 	#[https://qa.openlycrm.com|https://qa.openlycrm.com/]
-	@OP-418 @OP-422
+	@OP-418 @OP-422 @wip
 	Scenario: US OP-398 TC_005 QUICK NAVIGATION Adding Separator Lines
 		Given the user is logged in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation

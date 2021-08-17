@@ -20,7 +20,7 @@ public class ActivityStreamTaskPage extends BasePage{
     @FindBy(xpath = "//input[@class='js-id-checklist-is-form-title task-checklist-field-add']")
     public WebElement checklistItemTextInput;
     
-    @FindBy(xpath = "//span[@class='js-id-checklist-is-open-form task-dashed-link-inner']")
+    @FindBy(xpath = "//span[contains(text(),'add')]")
     public WebElement addLink;
     
     @FindBy(xpath = "//span[@class='js-id-checklist-is-i-title ']")
@@ -28,6 +28,12 @@ public class ActivityStreamTaskPage extends BasePage{
     
     @FindBy(xpath = "//span[@class='js-id-checklist-is-form-submit block-edit tasks-btn-apply task-field-title-ok']")
     public WebElement addCheckMark;
+    
+    @FindBy(xpath = "//span[contains(text(),'separator')]")
+    public WebElement separatorLink;
+    
+    @FindBy(xpath = "//div[contains(@class,'mode-read a-separator')]")
+    public List<WebElement> ckhecklistSeparator;
     
     public void goToTaskLinks(String linkName){
         String xPath = "//span[@data-bx-id='task-edit-toggler'][contains(text(),'"+linkName+"')]";
