@@ -62,7 +62,7 @@ Feature: Quick Navigation
 		When the user clicks on "Task" tab on the quick navigation
 		And the user clicks on the "Checklist" link in Task
 		And the user enters "This is the first checklist item" as description
-		And the user clicks on the add button
+		And the user clicks on the checkmark
 		Then the "This is the first checklist item" check list item should be added to the list	
 
 	#*User Story:* As a user, I should be able to assign tasks under Quick Navigate Menu
@@ -78,7 +78,7 @@ Feature: Quick Navigation
 	Scenario: US OP-398 TC_005 QUICK NAVIGATION Adding Separator Lines
 		Given the user is logged in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
-		And the user clicks on the Checklist link
+		And the user clicks on the "Checklist" link in Task
 		And the user enters "This is the first checklist item" as description
 		And the user clicks on the add button
 		And the user adds separator by clicking on separator link 
@@ -97,7 +97,7 @@ Feature: Quick Navigation
 	Scenario: US OP-398 TC_006 QUICK NAVIGATION Deleting The Checklist Item
 		Given the user is logged in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
-		And the user clicks on the Checklist link
+		And the user clicks on the "Checklist" link in Task
 		And the user enters "This is the first checklist item" as description
 		And the user clicks on the add button
 		And the user hovers over the checlist item and clicks on the delete icon

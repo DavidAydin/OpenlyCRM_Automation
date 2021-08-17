@@ -26,6 +26,9 @@ public class ActivityStreamTaskPage extends BasePage{
     @FindBy(xpath = "//span[@class='js-id-checklist-is-i-title ']")
     public List<WebElement> savedChecklistItems;
     
+    @FindBy(xpath = "//span[@class='js-id-checklist-is-form-submit block-edit tasks-btn-apply task-field-title-ok']")
+    public WebElement addCheckMark;
+    
     public void goToTaskLinks(String linkName){
         String xPath = "//span[@data-bx-id='task-edit-toggler'][contains(text(),'"+linkName+"')]";
         Driver.get().findElement(By.xpath(xPath)).click();

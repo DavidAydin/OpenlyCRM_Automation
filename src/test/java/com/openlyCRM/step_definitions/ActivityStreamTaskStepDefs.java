@@ -3,6 +3,7 @@ package com.openlyCRM.step_definitions;
 import com.openlyCRM.pages.ActivityStreamPage;
 import com.openlyCRM.pages.ActivityStreamTaskPage;
 import com.openlyCRM.utilities.BrowserUtils;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -166,4 +167,8 @@ public class ActivityStreamTaskStepDefs {
         throw new io.cucumber.java.PendingException();
     }
     
+    @And("the user clicks on the checkmark")
+    public void theUserClicksOnTheCheckmark() {
+        new ActivityStreamTaskPage().addCheckMark.click();
+    }
 }
