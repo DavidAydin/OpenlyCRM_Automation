@@ -9,9 +9,9 @@ Feature: Quick Navigation
 	#*Environment:* 
 	#
 	#[https://qa.openlycrm.com|https://qa.openlycrm.com/]
-	@OP-413 @OP-422 @wip
+	@OP-413 @OP-422
 	Scenario: US OP-398 TC_001 QUICK NAVIGATION High Priority check box
-		Given the user is logged in as "Helpdesk"
+		Given the user is logged in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
 		And the user clicks on the High Priority check box
 		Then the High Priority check box should be selected
@@ -22,11 +22,11 @@ Feature: Quick Navigation
 	#
 	#*Acceptance Criteria:*
 	#User should be able to click on Visual Editor and see that the editor text bar displays on top of the message box.
-	@OP-415 @OP-422
+	@OP-415 @OP-422 @wip
 	Scenario: US OP-398 TC_002 QUICK NAVIGATION Editor Text Box
 		Given the user is logged in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
-		And the user clicks on the "Visual Editor" icon
+		And the user clicks on the Visual Editor icon
 		Then the editor text box should be displayed	
 
 	#*User Story:* As a user, I should be able to assign tasks under Quick Navigate Menu

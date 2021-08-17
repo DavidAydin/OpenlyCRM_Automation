@@ -36,16 +36,21 @@ public class ActivityStreamTaskStepDefs {
     
     }
     
-    @When("the user clicks on the {string} icon")
-    public void the_user_clicks_on_the_icon(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("the user clicks on the Visual Editor icon")
+    public void the_user_clicks_on_the_VE_icon() {
+        
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        activityStreamTaskPage.visualEditorIcon.click();
+       
     }
     
     @Then("the editor text box should be displayed")
     public void the_editor_text_box_should_be_displayed() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        boolean textEditorDisplayed = activityStreamTaskPage.textEditor.isDisplayed();
+        BrowserUtils.waitFor(3);
+        Assert.assertTrue("verify that the text editor is displayed",textEditorDisplayed);
+    
     }
     
     @When("the user clicks on the Checklist link")
