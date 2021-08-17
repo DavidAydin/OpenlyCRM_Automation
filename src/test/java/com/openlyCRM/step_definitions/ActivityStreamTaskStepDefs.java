@@ -8,9 +8,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.util.List;
+
 public class ActivityStreamTaskStepDefs {
     
-   
+    
     
     @When("the user clicks on {string} tab on the quick navigation")
     public void the_user_clicks_on_tab_on_the_quick_navigation(String QN_tabName) {
@@ -25,7 +27,7 @@ public class ActivityStreamTaskStepDefs {
         ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
         activityStreamTaskPage.highPriorityCB.click();
         BrowserUtils.waitFor(5);
-    
+        
     }
     
     @Then("the High Priority check box should be selected")
@@ -33,7 +35,7 @@ public class ActivityStreamTaskStepDefs {
         ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
         boolean highPriorityCBSelected = activityStreamTaskPage.highPriorityCB.isSelected();
         Assert.assertTrue("verify high priority is selected",highPriorityCBSelected);
-    
+        
     }
     
     @When("the user clicks on the Visual Editor icon")
@@ -41,40 +43,55 @@ public class ActivityStreamTaskStepDefs {
         
         ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
         activityStreamTaskPage.visualEditorIcon.click();
-       
+        
     }
     
     @Then("the editor text box should be displayed")
     public void the_editor_text_box_should_be_displayed() {
         ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
         boolean textEditorDisplayed = activityStreamTaskPage.textEditor.isDisplayed();
-        BrowserUtils.waitFor(3);
+//        BrowserUtils.waitFor(3);
         Assert.assertTrue("verify that the text editor is displayed",textEditorDisplayed);
-    
+        
     }
     
-    @When("the user clicks on the Checklist link")
-    public void the_user_clicks_on_the_Checklist_link() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("the user clicks on the {string} link in Task")
+    public void the_user_clicks_on_the_Checklist_link_in_Task(String taskLink) {
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        activityStreamTaskPage.goToTaskLinks(taskLink);
     }
     
     @When("the user enters {string} as description")
-    public void the_user_enters_as_description(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void the_user_enters_as_description(String checkListDescription) {
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        activityStreamTaskPage.checklistItemTextInput.sendKeys(checkListDescription);
+        
+        
     }
     
     @When("the user clicks on the add button")
     public void the_user_clicks_on_the_add_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        activityStreamTaskPage.addLink.click();
+        
     }
     
     @Then("the {string} check list item should be added to the list")
-    public void the_check_list_item_should_be_added_to_the_list(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void the_check_list_item_should_be_added_to_the_list(String expectedChecklistItem) {
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        List<String> actualChecklistItems = BrowserUtils.getElementsText(activityStreamTaskPage.savedChecklistItems);
+        boolean doesContain = false;
+        for (String actualChecklistItem : actualChecklistItems) {
+            actualChecklistItem = actualChecklistItem.trim();
+            expectedChecklistItem = expectedChecklistItem.trim();
+            if (actualChecklistItem.equals(expectedChecklistItem)){
+                doesContain=true;
+                break;
+            }
+        }
+        String verificationMessage = "verify that the checklist item \""+expectedChecklistItem+"\" is added";
+        Assert.assertTrue(verificationMessage,doesContain);
+        
     }
     
     @When("the user adds separator by clicking on separator link")

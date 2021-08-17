@@ -22,7 +22,7 @@ Feature: Quick Navigation
 	#
 	#*Acceptance Criteria:*
 	#User should be able to click on Visual Editor and see that the editor text bar displays on top of the message box.
-	@OP-415 @OP-422 @wip
+	@OP-415 @OP-422
 	Scenario: US OP-398 TC_002 QUICK NAVIGATION Editor Text Box
 		Given the user is logged in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
@@ -42,7 +42,7 @@ Feature: Quick Navigation
 	Scenario: US OP-398 TC_003 QUICK NAVIGATION Adding Checklist Item Using The Button
 		Given the user is logged in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
-		And the user clicks on the Checklist link
+		And the user clicks on the "Checklist" link in Task
 		And the user enters "This is the first checklist item" as description
 		And the user clicks on the add button
 		Then the "This is the first checklist item" check list item should be added to the list	
@@ -56,11 +56,11 @@ Feature: Quick Navigation
 	#*Environment:* 
 	#
 	#[https://qa.openlycrm.com|https://qa.openlycrm.com/]
-	@OP-417 @OP-422
+	@OP-417 @OP-422 @wip
 	Scenario: US OP-398 TC_004 QUICK NAVIGATION Adding Checklist Item Using The Checkmark
 		Given the user is logged in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
-		And the user clicks on the Checklist link
+		And the user clicks on the "Checklist" link in Task
 		And the user enters "This is the first checklist item" as description
 		And the user clicks on the add button
 		Then the "This is the first checklist item" check list item should be added to the list	
