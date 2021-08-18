@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.WeakHashMap;
 
@@ -122,57 +123,69 @@ public class ActivityStreamTaskStepDefs {
     @Then("the {string} checklist item should disappear")
     public void the_checklist_item_should_disappear(String checkListItem) {
         ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitForMilis(300);
         List<String> actualChecklistItems = BrowserUtils.getElementsText(activityStreamTaskPage.savedChecklistItems);
         boolean doesContain = false;
         for (String actualChecklistItem : actualChecklistItems) {
-            if(actualChecklistItem.trim().equals(checkListItem.trim())){
+            if (actualChecklistItem.trim().equals(checkListItem.trim())) {
                 doesContain = true;
                 break;
             }
         }
         String verificationMessage = "Verify that the checklist item " + checkListItem + " is deleted";
-        Assert.assertFalse(verificationMessage,doesContain);
-    
+        Assert.assertFalse(verificationMessage, doesContain);
+        
     }
     
     @When("the user clicks on the clicks on the Deadline date box")
     public void the_user_clicks_on_the_clicks_on_the_Deadline_date_box() {
-    
+        new ActivityStreamTaskPage().deadlineDateBox.click();
     }
     
     @When("the user selects date {string} by using the date picker")
-    public void the_user_selects_date_by_using_the_date_picker(String string) {
-    
+    public void the_user_selects_date_by_using_the_date_picker(String timeSet) {
+        new ActivityStreamTaskPage().chooseFromDatePicker(timeSet);
+        
     }
     
     @Then("the date {string} should appear on the date box")
-    public void the_date_should_appear_on_the_date_box(String string) {
-    
+    public void the_date_should_appear_on_the_date_box(String expectedTimeSet) {
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        System.out.println("activityStreamTaskPage.deadlineDateBoxValue.getAttribute(\"value\") = " + activityStreamTaskPage.deadlineDateBoxValue.getAttribute("value"));
+        String actualTimeSet = activityStreamTaskPage.deadlineDateBoxValue.getAttribute("value");
+        Assert.assertEquals(expectedTimeSet,actualTimeSet);
     }
     
     @When("the user clicks on Time Planning link")
     public void the_user_clicks_on_Time_Planning_link() {
-    
+    new ActivityStreamTaskPage().timePlanning.click();
     }
     
     @When("the user clicks on Start Task on date box")
     public void the_user_clicks_on_Start_Task_on_date_box() {
-    
+    new ActivityStreamTaskPage().startTaskOnDateBox.click();
     }
     
     @Then("the date {string} should appear on the start task on date box")
-    public void the_date_should_appear_on_the_start_task_on_date_box(String string) {
+    public void the_date_should_appear_on_the_start_task_on_date_box(String expectedTimeSet) {
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        System.out.println("activityStreamTaskPage.deadlineDateBoxValue.getAttribute(\"value\") = " + activityStreamTaskPage.startTaskOnDateBoxValue.getAttribute("value"));
+        String actualTimeSet = activityStreamTaskPage.startTaskOnDateBoxValue.getAttribute("value");
+        Assert.assertEquals(expectedTimeSet,actualTimeSet);
     
     }
     
     @When("the user clicks on Finish date box")
     public void the_user_clicks_on_Finish_date_box() {
-    
+    new ActivityStreamTaskPage().finishDateBox.click();
     }
     
     @Then("the date {string} should appear on the Finish date box")
-    public void the_date_should_appear_on_the_Finish_date_box(String string) {
+    public void the_date_should_appear_on_the_Finish_date_box(String expectedTimeSet) {
+        ActivityStreamTaskPage activityStreamTaskPage = new ActivityStreamTaskPage();
+        System.out.println("activityStreamTaskPage.deadlineDateBoxValue.getAttribute(\"value\") = " + activityStreamTaskPage.finishDateBoxValue.getAttribute("value"));
+        String actualTimeSet = activityStreamTaskPage.finishDateBoxValue.getAttribute("value");
+        Assert.assertEquals(expectedTimeSet,actualTimeSet);
     
     }
     

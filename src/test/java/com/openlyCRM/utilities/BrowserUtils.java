@@ -82,6 +82,14 @@ public class BrowserUtils {
         }
     }
     
+    public static void waitForMilis(int milis) {
+        try {
+            Thread.sleep(milis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * Waits for the provided element to be visible on the page
      *

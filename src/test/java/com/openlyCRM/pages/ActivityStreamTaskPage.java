@@ -1,7 +1,9 @@
 package com.openlyCRM.pages;
 
+import com.openlyCRM.utilities.BrowserUtils;
 import com.openlyCRM.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -36,9 +38,82 @@ public class ActivityStreamTaskPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'mode-read a-separator')]")
     public List<WebElement> ckhecklistSeparator;
     
+    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']")
+    public WebElement deadlineDateBox;
+    
+    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']//input[@data-bx-id='datepicker-value']")
+    public WebElement deadlineDateBoxValue;
+    
+    @FindBy(xpath = "//span[text()='Time planning']")
+    public WebElement timePlanning;
+    
+    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-start-date-plan']")
+    public  WebElement startTaskOnDateBox;
+    
+    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-end-date-plan']")
+    public WebElement finishDateBox;
+    
+    @FindBy(name = "ACTION[0][ARGUMENTS][data][START_DATE_PLAN]")
+    public WebElement startTaskOnDateBoxValue;
+    
+    @FindBy(name = "ACTION[0][ARGUMENTS][data][END_DATE_PLAN]")
+    public WebElement finishDateBoxValue;
+    
+    
+    public void chooseFromDatePicker(String timeSet){
+        String[] date_Time_AmPm = timeSet.split(" ");
+        String[] mmDDyyyy = date_Time_AmPm[0].split("/");
+        String[] hhMMss = date_Time_AmPm[1].split(":");
+        String aMpM = date_Time_AmPm[2];
+        String minute = hhMMss[1];
+        String hour= hhMMss[0];
+        String day = mmDDyyyy[1];
+        String month = mmDDyyyy[0];
+        String year = mmDDyyyy[2];
+        
+        String yearXPath = "//span[@data-bx-year='"+year+"']";
+        String monthXPath = "//span[contains(@class,'bx-calendar-month')][@data-bx-month='"+(Integer.parseInt(month)-1)+
+                "']";
+        String dayXPath = "(//a[@class='bx-calendar-cell'] | //a[@class='bx-calendar-cell bx-calendar-weekend'])[text" +
+                "()='"+Integer.parseInt(day)+"']";
+        String hourXPath = "//input[@class='bx-calendar-form-input']";
+        String minuteXPath = "//input[@class='bx-calendar-form-input']";
+        String aMpMxPath = "//span[@class='bx-calendar-AM-PM-text']";
+        
+        WebElement yearBox = Driver.get().findElement(By.xpath("//a[@class='bx-calendar-top-year']"));
+        yearBox.click();
+        BrowserUtils.waitForMilis(200);
+        WebElement yearSelector = Driver.get().findElement(By.xpath(yearXPath));
+        yearSelector.click();
+        BrowserUtils.waitForMilis(200);
+        WebElement monthBox = Driver.get().findElement(By.xpath("//a[@class='bx-calendar-top-month']"));
+        monthBox.click();
+        BrowserUtils.waitForMilis(200);
+        WebElement monthSelector = Driver.get().findElement(By.xpath(monthXPath));
+        monthSelector.click();
+        BrowserUtils.waitForMilis(200);
+        WebElement daySelector = Driver.get().findElement(By.xpath(dayXPath));
+        daySelector.click();
+        WebElement aMpMSelector = Driver.get().findElement(By.xpath(aMpMxPath));
+        System.out.println("aMpMSelector.getText() = " + aMpMSelector.getText());
+        WebElement hourSelector = Driver.get().findElement(By.xpath(hourXPath));
+        hourSelector.sendKeys(hour);
+        WebElement minuteSelector = Driver.get().findElement(By.xpath(minuteXPath));
+        minuteSelector.sendKeys(minute);
+        WebElement submitSelectedDate = Driver.get().findElement(By.xpath("//span[@class='bx-calendar-button-text'][text()" +
+                "='Select']"));
+        if (!aMpMSelector.getText().equalsIgnoreCase(aMpM)) {
+            aMpMSelector.click();
+        }
+        submitSelectedDate.click();
+        BrowserUtils.waitForMilis(200);
+        
+    }
+    
     public void goToTaskLinks(String linkName) {
         String xPath = "//span[@data-bx-id='task-edit-toggler'][contains(text(),'" + linkName + "')]";
         Driver.get().findElement(By.xpath(xPath)).click();
+        
     }
     
     
