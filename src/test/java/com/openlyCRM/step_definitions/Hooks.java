@@ -22,7 +22,7 @@ public class Hooks {
     public void tearDown(Scenario sc){
         if(sc.isFailed()){
             final byte[] screenshot = ((TakesScreenshot) Driver.get()).getScreenshotAs(OutputType.BYTES);
-            sc.attach(screenshot,"image/png/jpg","screenshot");
+            sc.attach(screenshot,"image/png","screenshot");
         }
         Driver.closeDriver();
     }
